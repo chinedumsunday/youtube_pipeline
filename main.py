@@ -1,10 +1,10 @@
 from dotenv import load_dotenv
 load_dotenv()
 import os 
-from extract import extract_youtube_data
-from transform import make_dataframe, transform_youtube_data
-from validate import validate_youtube_data
-from load import load_youtube_data
+from py_scripts.extract import extract_youtube_data
+from py_scripts.transform import make_dataframe, transform_youtube_data
+from py_scripts.validate import validate_youtube_data
+from py_scripts.load import load_youtube_data
 import pandas as pd
 import logging
 os.makedirs('logs', exist_ok=True)

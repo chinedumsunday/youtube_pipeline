@@ -1,0 +1,15 @@
+2025-12-10 18:13:27,147 - INFO - Checking and Transforming datatypes
+2025-12-10 18:13:30,787 - INFO - Data fetched sucessfully from YouTube API with response code 200
+2025-12-10 18:13:30,834 - INFO - Data extraction completed successfully.
+2025-12-10 18:13:30,980 - INFO - JSON file ./data/data_list_2025-12-10.json successfully read into DataFrame
+2025-12-10 18:13:31,086 - INFO - Data transformation completed successfully \u2705
+2025-12-10 18:13:31,087 - INFO - Validation Successful: 'video_id' and 'title' columns are present in the DataFrame \u2705
+2025-12-10 18:13:31,088 - INFO - Validation Successful: 'view_count' column has correct datatype and non-negative values \u2705
+2025-12-10 18:13:31,092 - INFO - duplicate numbers in video_id column: 0
+2025-12-10 18:13:31,098 - INFO - Printing duplicate video_ids: Series([], Name: video_id, dtype: object)
+2025-12-10 18:13:31,099 - INFO - Validation Successful: 'video_id' column contains unique values \u2705
+2025-12-10 18:13:31,103 - INFO - Connected to SQLite database successfully \u2705
+2025-12-10 18:13:31,126 - INFO - Table created successfully \u2705
+2025-12-10 18:13:31,695 - INFO - Data loaded into SQLite database successfully \u2705
+2025-12-10 18:13:31,696 - INFO - SQLite database connection closed \u2705
+2025-12-10 18:13:31,708 - INFO - Data read from SQLite database successfully \u2705
