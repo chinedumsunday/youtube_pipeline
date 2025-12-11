@@ -1,0 +1,30 @@
+2025-12-11 18:26:04,095 - INFO - Checking and Transforming datatypes
+2025-12-11 18:26:07,133 - INFO - Data fetched sucessfully from YouTube API with response code 200
+2025-12-11 18:26:07,159 - INFO - Data extraction completed successfully.
+2025-12-11 18:26:07,163 - INFO - Data Extraction completed successfully \u2705
+2025-12-11 18:26:07,252 - INFO - JSON file ./data/data_list_2025-12-11.json successfully read into DataFrame
+2025-12-11 18:26:07,366 - INFO - Data transformation completed successfully \u2705
+2025-12-11 18:26:07,366 - INFO - Data Transformation completed successfully \u2705
+2025-12-11 18:26:07,367 - INFO - Validation Successful: 'video_id' and 'title' columns are present in the DataFrame \u2705
+2025-12-11 18:26:07,367 - INFO - Validation Successful: 'view_count' column has correct datatype and non-negative values \u2705
+2025-12-11 18:26:07,370 - INFO - duplicate numbers in video_id column: 0
+2025-12-11 18:26:07,376 - INFO - Printing duplicate video_ids: Series([], Name: video_id, dtype: object)
+2025-12-11 18:26:07,376 - INFO - Validation Successful: 'video_id' column contains unique values \u2705
+2025-12-11 18:26:07,377 - INFO - Data Validation completed successfully \u2705
+2025-12-11 18:26:07,379 - INFO - Connected to SQLite database successfully \u2705
+2025-12-11 18:26:07,398 - INFO - Table created successfully \u2705
+2025-12-11 18:26:08,086 - INFO - Data loaded into SQLite database successfully \u2705
+2025-12-11 18:26:08,086 - INFO - SQLite database connection closed \u2705
+2025-12-11 18:26:08,096 - INFO - Data read from SQLite database successfully \u2705
+2025-12-11 18:26:08,132 - INFO - Data Loading completed successfully \u2705
+2025-12-11 18:26:08,138 - INFO - Fetched top 10 videos by views successfully \u2705
+2025-12-11 18:26:08,138 - INFO - SQLite database connection closed \u2705
+2025-12-11 18:26:08,145 - INFO - Fetched daily growth in views successfully \u2705
+2025-12-11 18:26:08,146 - INFO - SQLite database connection closed \u2705
+2025-12-11 18:26:08,153 - INFO - Fetched daily rank difference \u2705
+2025-12-11 18:26:08,154 - INFO - Sqlite database connection closed \u2705
+2025-12-11 18:26:08,158 - INFO - Fetched new entries successfully \u2705
+2025-12-11 18:26:08,159 - INFO - Sqlite database connection closed \u2705
+2025-12-11 18:26:08,165 - INFO - Fetched CHANNEL AND TOTAL VIEWS \u2705
+2025-12-11 18:26:08,166 - INFO - Sqlite database connection closed \u2705
+2025-12-11 18:26:08,166 - INFO - ETL Pipeline executed successfully \u2705

@@ -6,10 +6,6 @@ import logging
 import sqlite3
 
 os.makedirs('logs', exist_ok=True)
-logging.basicConfig(level=logging.INFO,filename='./logs/load.log', 
-                    format='%(asctime)s - %(levelname)s - %(message)s') 
-
-
 
 def load_youtube_data(df):
     try:

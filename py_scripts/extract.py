@@ -6,10 +6,7 @@ import logging
 from pprint import pprint
 import sys 
 import isodate
-os.makedirs('logs', exist_ok=True)
-os.makedirs('data', exist_ok=True)
-logging.basicConfig(level=logging.INFO,filename='./logs/extract.log',
-                    format='%(asctime)s - %(levelname)s - %(message)s')
+
 
 
 def extract_youtube_data(url,region, maxResult):
@@ -20,7 +17,7 @@ def extract_youtube_data(url,region, maxResult):
     except Exception as e:
         logging.error(f"Error fetching data from YouTube API: {e}")
         print("Stopping execution due to error in data extraction.  Please check the logs for more details.")
-        sys.exit(1, "Error fetching data from YouTube API")
+        sys.exit("Error fetching data from YouTube API")
     try:
         data_list = []
         for i in data['items']:
@@ -66,7 +63,7 @@ def extract_youtube_data(url,region, maxResult):
     except Exception as e:
         logging.error(f"Error processing data from YouTube API: {e}")
         print("Stopping execution due to error in data processing.  Please check the logs for more details.")
-        sys.exit(1, "Error processing data from YouTube API")
+        sys.exit("Error processing data from YouTube API")
 
     
 # data = requests.get(url).json()

@@ -4,8 +4,8 @@ import isodate
 import os
 import logging
 os.makedirs('logs', exist_ok=True) 
-logging.basicConfig(level=logging.INFO,filename='./logs/transform.log',
-                    format='%(asctime)s - %(levelname)s - %(message)s')
+
+
 
 def make_dataframe(json_file):
     try:

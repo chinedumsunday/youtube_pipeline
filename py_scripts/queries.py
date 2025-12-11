@@ -3,11 +3,8 @@ import pandas as pd
 import numpy as np
 import isodate
 import os
-
-os.mkdirs('query_logs', exist_ok=True)
 import logging
-logging.basicConfig(level=logging.INFO,filename='./query_logs/queries.log',
-                    format='%(asctime)s - %(levelname)s - %(message)s')
+
 
 def fetch_top_videos_by_views(limit=10):
     try:
@@ -33,9 +30,9 @@ def daily_growth_in_views():
     """
     try:
         conn = sqlite3.connect('youtube_data.db')
-        query = """SELECT video_id, title, fetch_date,view_count,
-                   LAG(view_count) OVER (PARTITION BY video_id ORDER BY fetch_date) AS previous_view_count,
-                   (view_count - LAG(view_count) OVER (PARTITION BY video_id ORDER BY fetch_date)) AS daily_view_growth
+        query = """SELECT video_id, title, fetched_date,view_count,
+                   LAG(view_count) OVER (PARTITION BY video_id ORDER BY fetched_date) AS previous_view_count,
+                   (view_count - LAG(view_count) OVER (PARTITION BY video_id ORDER BY fetched_date)) AS daily_view_growth
                    FROM youtube_data;"""
         df = pd.read_sql_query(query, conn)
         logging.info("Fetched daily growth in views successfully ✅")   
@@ -53,9 +50,9 @@ def daily_rank_movers():
     Docstring for daily_rank_movers, this function gets the daily rank change for each video by comparing the current day's rank with the previous day's rank.  
     """
     try:
-        conn = sqlite3.connect('youtube_data_db')
-        query = """SELECT video_id, title fetch_date, rank, lag(rank) over (partition by video_id order by fetch_date) as previous_rank,
-                   (lag(rank) over (partition by video_id order by fetch_date) - rank) as daily_rank_change
+        conn = sqlite3.connect('youtube_data.db')
+        query = """SELECT video_id, title fetched_date, rank, lag(rank) over (partition by video_id order by fetched_date) as previous_rank,
+                   (lag(rank) over (partition by video_id order by fetched_date) - rank) as daily_rank_change
                    FROM youtube_data;"""
         df =pd.read_sql_query(query, conn)
         logging.info("Fetched daily rank difference ✅")
@@ -70,9 +67,9 @@ def daily_rank_movers():
 def new_entries():
     """docstring for new_entries, this function fetches the new video entries added to the database today that were not present yesterday."""
     try: 
-        conn = sqlite3.connect('youtube_data_db')
-        query = """With previous_day AS (SELECT video_id, title, fetch_date FROM youtube_data WHERE fetch_date = DATE('now','-1 day'))
-                    SELECT video_id, title, fetch_date FROM youtube_date WHERE fetch_date = DATE('now') AND video_id not in (select video_id from previous_day);"""
+        conn = sqlite3.connect('youtube_data.db')
+        query = """With previous_day AS (SELECT video_id, title, fetched_date FROM youtube_data WHERE fetched_date = DATE('now','-1 day'))
+                    SELECT video_id, title, fetched_date FROM youtube_data WHERE fetched_date = DATE('now') AND video_id not in (select video_id from previous_day);"""
         df = pd.read_sql_query(query, conn)
         logging.info("Fetched new entries successfully ✅")
     except Exception as e:
@@ -84,7 +81,7 @@ def new_entries():
 
 def channel_insights():
     try:
-        conn = sqlite3.connect('yotube_data_db')
+        conn = sqlite3.connect('youtube_data.db')
         query = """SELECT channel_id,channel_title, sum(view_count) FROM youtube_data GROUP BY channel_id;"""
         df = pd.read_sql_query(query, conn)
         logging.info("Fetched CHANNEL AND TOTAL VIEWS ✅")

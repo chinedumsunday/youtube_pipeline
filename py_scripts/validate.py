@@ -2,10 +2,8 @@ import pandas as pd
 import numpy as np 
 import os
 import logging
-os.makedirs('logs', exist_ok=True)  
 
-logging.basicConfig(level=logging.INFO,filename='./logs/validate.log',
-                    format='%(asctime)s - %(levelname)s - %(message)s')
+
 
 def validate_youtube_data(df):
     x = "video_id"
