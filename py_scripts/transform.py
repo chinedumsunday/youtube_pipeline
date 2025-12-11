@@ -18,7 +18,7 @@ def make_dataframe(json_file):
         raise
 
 # def transform_youtube_data(df):
-logging.info("Checking and Transforming datatypes")
+
 def transform_youtube_data(df):
     df.published_at = pd.to_datetime(df.published_at, errors='coerce')
     df.published_at = df[['published_at']].astype(str)
