@@ -6,7 +6,6 @@ import logging
 
 os.makedirs('results', exist_ok=True)
 
-
 def fetch_top_videos_by_views(limit=10):
     try:
         conn = sqlite3.connect('youtube_data.db')
