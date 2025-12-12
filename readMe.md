@@ -57,7 +57,6 @@ This `readMe.md` documents how to set up and run the pipeline, plus troubleshoot
 └── readMe.md              # this file
 ```
 
-> Note: file is named `readMe.md` in the repo root — it's this file.
 
 ## Requirements
 
@@ -165,11 +164,3 @@ Select-String -Path .\* -Pattern "sqlite3.connect" -SimpleMatch
 - Add unit tests for `transform.py` and `validate.py` (small fixtures covering list columns, missing fields, and timestamp conversions).
 - Add a script to re-create the DB schema (`scripts/init_db.py`) for easier local setup.
 
----
-
-If you'd like, I can also:
-
-- open and patch `py_scripts/extract.py` so non-200 responses are handled cleanly and the response body is logged, and
-- add a small `scripts/init_db.py` to create the table schema and verify the DB connection.
-
-Tell me which of those you'd like me to do and I'll implement it and run the pipeline to verify.
