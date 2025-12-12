@@ -33,7 +33,7 @@ jobs:
         run: |
           git config --global user.name "github-actions"
           git config --global user.email "github-actions@github.com"
-          git add data/ reports/
+          git add data/ results/
           git commit -m "Daily ETL update" || echo "No changes to commit"
 
       - name: Push changes
