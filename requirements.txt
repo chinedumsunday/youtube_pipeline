@@ -1,8 +1,7 @@
-# Core YouTube download/processing
 requests
-isodate
-numpy
 pandas
-sqlite3
+numpy
+isodate
+python-dotenv
 streamlit
 plotly
