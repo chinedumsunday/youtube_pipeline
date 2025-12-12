@@ -1,5 +1,3 @@
-import os
-
 # YouTube Trending Data ETL Pipeline
 
 This project is an automated ETL (Extract, Transform, Load) pipeline that fetches trending video statistics from the YouTube Data API v3, processes the data, validates it, and stores it in a SQLite database for historical tracking.
@@ -163,4 +161,3 @@ Select-String -Path .\* -Pattern "sqlite3.connect" -SimpleMatch
 - Add retry/backoff for transient API errors.
 - Add unit tests for `transform.py` and `validate.py` (small fixtures covering list columns, missing fields, and timestamp conversions).
 - Add a script to re-create the DB schema (`scripts/init_db.py`) for easier local setup.
-
