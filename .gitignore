@@ -1,1 +1,4 @@
 .env
+./youtube_data.db
+__pycache__/
+logs/

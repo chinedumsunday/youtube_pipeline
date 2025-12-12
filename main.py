@@ -5,7 +5,6 @@ os.makedirs('data', exist_ok=True)
 
 logging.basicConfig(level=logging.INFO,filename='./logs/main.log',
                     format='%(asctime)s - %(levelname)s - %(message)s')
-
 from dotenv import load_dotenv
 load_dotenv()
 from py_scripts.extract import extract_youtube_data

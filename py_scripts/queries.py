@@ -88,7 +88,7 @@ def new_entries():
 def channel_insights():
     try:
         conn = sqlite3.connect('youtube_data.db')
-        query = """SELECT channel_id,channel_title, sum(view_count) FROM youtube_data GROUP BY channel_id;"""
+        query = """SELECT channel_id,channel_title, sum(view_count) as view_count FROM youtube_data GROUP BY channel_id;"""
         df = pd.read_sql_query(query, conn)
         df.to_csv('./results/channel_insights.csv', index=False)
         logging.info("Fetched CHANNEL AND TOTAL VIEWS ✅")
