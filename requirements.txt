@@ -1,6 +1,5 @@
 # Core YouTube download/processing
 requests
-json
 pprint
 sys
 isodate
