@@ -1,8 +1,6 @@
 import os
 
-# This script generates the README.md file for your project
-
-readme_content = """# YouTube Trending Data ETL Pipeline
+# YouTube Trending Data ETL Pipeline
 
 This project is an automated ETL (Extract, Transform, Load) pipeline that fetches trending video statistics from the YouTube Data API v3, processes the data, validates it, and stores it in a SQLite database for historical tracking.
 
