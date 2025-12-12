@@ -1,0 +1,13 @@
+# Core YouTube download/processing
+requests
+os
+logging
+json
+pprint
+sys
+isodate
+numpy
+pandas
+sqlite3
+streamlit
+plotly
