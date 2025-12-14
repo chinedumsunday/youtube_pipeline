@@ -56,7 +56,7 @@ def daily_rank_movers():
     """
     try:
         conn = libsql.connect(database=db_url,auth_token=db_auth)
-        query = """SELECT video_id, title fetched_date, rank, lag(rank) over (partition by video_id order by fetched_date) as previous_rank,
+        query = """SELECT video_id, title, fetched_date, rank, lag(rank) over (partition by video_id order by fetched_date) as previous_rank,
                    (lag(rank) over (partition by video_id order by fetched_date) - rank) as daily_rank_change
                    FROM youtube_data;"""
         df =pd.read_sql_query(query, conn)
