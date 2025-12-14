@@ -46,7 +46,7 @@ def load_youtube_data(df):
     try:
         cursor = conn.cursor()
         for index, df in df.iterrows():
-            cursor.execute("""INSERT OR REPLACE INTO youtube_data (
+            cursor.execute("""INSERT INTO youtube_data (
                         video_id, title, channel_id, channel_title, published_at, fetched_time, view_count, like_count, comment_count, category_id, duration, description, tags, thumbnail_url,is_live,rank,fetched_date) values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)""",
                         (df['video_id'], df['title'], df['channel_id'], df['channel_title'], df['published_at'], df['fetched_time'], df['view_count'], df['like_count'], df['comment_count'], df['category_id'], df['duration'], df['description'], df['tags'], df['thumbnail_url'], df['is_live'], df['rank'], df['fetch_date']))
             conn.commit()
