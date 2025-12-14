@@ -5,3 +5,4 @@ isodate
 python-dotenv
 streamlit
 plotly
+libsql
