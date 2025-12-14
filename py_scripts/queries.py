@@ -3,12 +3,15 @@ import pandas as pd
 import numpy as np
 import os
 import logging
+import libsql
+db_url = os.getenv("db_url")
+db_auth = os.getenv("db_auth")
 
 os.makedirs('results', exist_ok=True)
 
 def fetch_top_videos_by_views(limit=10):
     try:
-        conn = sqlite3.connect('youtube_data.db')
+        conn = libsql.connect(database=db_url,auth_token=db_auth)
         query = f"""SELECT video_id, title, view_count 
                     FROM youtube_data 
                     ORDER BY view_count DESC 
@@ -30,7 +33,7 @@ def daily_growth_in_views():
     Docstring for daily_growth_in_views, this function gets the daily growth in views for each video. by taking the difference between the current day's view count and the previous day's view count.
     """
     try:
-        conn = sqlite3.connect('youtube_data.db')
+        conn = libsql.connect(database=db_url,auth_token=db_auth)
         query = """SELECT video_id, title, fetched_date,view_count,
                    LAG(view_count) OVER (PARTITION BY video_id ORDER BY fetched_date) AS previous_view_count,
                    (view_count - LAG(view_count) OVER (PARTITION BY video_id ORDER BY fetched_date)) AS daily_view_growth
@@ -52,7 +55,7 @@ def daily_rank_movers():
     Docstring for daily_rank_movers, this function gets the daily rank change for each video by comparing the current day's rank with the previous day's rank.  
     """
     try:
-        conn = sqlite3.connect('youtube_data.db')
+        conn = libsql.connect(database=db_url,auth_token=db_auth)
         query = """SELECT video_id, title fetched_date, rank, lag(rank) over (partition by video_id order by fetched_date) as previous_rank,
                    (lag(rank) over (partition by video_id order by fetched_date) - rank) as daily_rank_change
                    FROM youtube_data;"""
@@ -70,7 +73,7 @@ def daily_rank_movers():
 def new_entries():
     """docstring for new_entries, this function fetches the new video entries added to the database today that were not present yesterday."""
     try: 
-        conn = sqlite3.connect('youtube_data.db')
+        conn = libsql.connect(database=db_url,auth_token=db_auth)
         query = """With previous_day AS (SELECT video_id, title, fetched_date FROM youtube_data WHERE fetched_date = DATE('now','-1 day'))
                     SELECT video_id, title, fetched_date FROM youtube_data WHERE fetched_date = DATE('now') AND video_id not in (select video_id from previous_day);"""
         df = pd.read_sql_query(query, conn)
@@ -85,7 +88,7 @@ def new_entries():
 
 def channel_insights():
     try:
-        conn = sqlite3.connect('youtube_data.db')
+        conn = libsql.connect(database=db_url,auth_token=db_auth)
         query = """SELECT channel_id,channel_title, sum(view_count) as view_count FROM youtube_data GROUP BY channel_id;"""
         df = pd.read_sql_query(query, conn)
         df.to_csv('./results/channel_insights.csv', index=False)

@@ -4,18 +4,21 @@ import isodate
 import os
 import logging
 import sqlite3
+import libsql
 
 os.makedirs('logs', exist_ok=True)
+db_url = os.getenv("db_url")
+db_auth = os.getenv("db_auth")
 
 def load_youtube_data(df):
     try:
-        conn = sqlite3.connect('youtube_data.db')
+        conn = libsql.connect(database=db_url,auth_token=db_auth)
         logging.info("Connected to SQLite database successfully ✅")
     except Exception as e:  
         logging.error(f"Error connecting to SQLite database: {e}")
         raise   
     try:
-        conn = sqlite3.connect('youtube_data.db')
+        conn = libsql.connect(database=db_url,auth_token=db_auth)
         cursor = conn.cursor()
         cursor.execute("""CREATE TABLE IF NOT EXISTS youtube_data (
                        video_id TEXT,
@@ -56,7 +59,7 @@ def load_youtube_data(df):
         logging.info("SQLite database connection closed ✅")
 
     try:
-        conn = sqlite3.connect('youtube_data.db')
+        conn = libsql.connect(database=db_url,auth_token=db_auth)
         df_loaded = pd.read_sql_query("SELECT * FROM youtube_data LIMIT 5", conn)
         logging.info("Data read from SQLite database successfully ✅")
         print(df_loaded.head(5))
