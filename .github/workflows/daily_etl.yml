@@ -30,6 +30,8 @@ jobs:
       - name: Run ETL Script
         env:
           YOUTUBE_API_KEY: ${{ secrets.YOUTUBE_API_KEY }}
+          db_url: ${{ secrets.DB_URL}}
+          db_auth: ${{ secrets.db_auth}}
         run: |
           python main.py
 
