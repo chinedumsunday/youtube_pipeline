@@ -11,14 +11,14 @@ except ImportError:
 os.makedirs('results', exist_ok=True)
 
 # LOAD ENV VARS
-TURSO_DB_URL = os.getenv("TURSO_DB_URL")
-TURSO_AUTH_TOKEN = os.getenv("TURSO_AUTH_TOKEN")
+db_url = os.getenv("TURSO_DB_URL")
+db_auth = os.getenv("TURSO_AUTH_TOKEN")
 
 def get_connection():
     """Helper function to get DB connection"""
     try:
         # We use keyword arguments to avoid the 'timeout' TypeError
-        conn = libsql.connect(database=TURSO_DB_URL, auth_token=TURSO_AUTH_TOKEN)
+        conn = libsql.connect(database=db_url, auth_token=db_auth)
         return conn
     except Exception as e:
         logging.error(f"Error connecting to Turso: {e}")
