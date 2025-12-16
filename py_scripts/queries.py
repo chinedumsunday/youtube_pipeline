@@ -11,7 +11,7 @@ except ImportError:
 os.makedirs('results', exist_ok=True)
 
 # LOAD ENV VARS
-db_url = os.getenv("DB_URL")
+db_url = os.getenv("db_url")
 db_auth = os.getenv("db_auth")
 
 def get_connection():
