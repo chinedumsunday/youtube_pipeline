@@ -7,7 +7,7 @@ import sqlite3
 import libsql
 
 os.makedirs('logs', exist_ok=True)
-db_url = os.getenv("db_url")
+db_url = os.getenv("DB_URL")
 db_auth = os.getenv("db_auth")
 
 def load_youtube_data(df):
