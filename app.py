@@ -179,6 +179,14 @@ with col4:
     df_rank = load_data('./results/daily_rank_movers.csv')
 
     if df_rank is not None:
+        # --- FIX STARTS HERE ---
+        # 1. Fill NaNs to prevent errors
+        df_rank['daily_rank_change'] = df_rank['daily_rank_change'].fillna(0)
+        
+        # 2. Create a specific column for bubble size (must be positive)
+        df_rank['magnitude'] = df_rank['daily_rank_change'].abs()
+        # -----------------------
+
         # Compact Sparkline Table
         st.dataframe(
             df_rank.head(10),
@@ -187,7 +195,7 @@ with col4:
                     "Rank Trend",
                     y_min=-10, y_max=10
                 ),
-                "title": st.column_config.TextColumn("Video", width="small"), # Smaller text to fit
+                "title": st.column_config.TextColumn("Video", width="small"),
             },
             hide_index=True,
             use_container_width=True
@@ -199,14 +207,15 @@ with col4:
             x='fetched_date', 
             y='daily_rank_change', 
             color='title',
-            size='daily_rank_change', 
-            size_max=15
+            size='magnitude', # <--- CHANGE THIS to use the new positive column
+            size_max=15,
+            hover_data=['daily_rank_change'] # Keep the real value in the tooltip
         )
         fig_rank.update_layout(
             plot_bgcolor="rgba(0,0,0,0)", 
             xaxis=(dict(showgrid=False)),
-            showlegend=False, # Hide legend to save space in narrow column
-            height=400, # Slightly smaller than the main graph
+            showlegend=False, 
+            height=400, 
             margin=dict(l=0, r=0, t=30, b=0)
         )
         st.plotly_chart(fig_rank, use_container_width=True)
